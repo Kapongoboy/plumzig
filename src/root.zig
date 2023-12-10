@@ -24,3 +24,12 @@ test "e to the nth" {
     const actual_max_result = try numbers.eToNthDigit(past_index);
     try std.testing.expectEqual(max_value, actual_max_result);
 }
+
+test "fibonnaci numbers" {
+    const example_idx = [4]usize{ 1, 11, 16, 19 };
+    const expected_result = [4]usize{ 1, 89, 987, 4181 };
+    for (example_idx, expected_result) |idx, expected_value| {
+        const result = try numbers.fibonacciNumber(idx);
+        try std.testing.expectEqual(expected_value, result);
+    }
+}

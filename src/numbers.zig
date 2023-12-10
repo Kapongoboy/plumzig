@@ -37,3 +37,24 @@ pub fn eToNthDigit(N: usize) !f64 {
     const value = try parseFloatValue(e, N, 'e');
     return value;
 }
+
+pub fn fibonacciNumber(N: usize) !usize {
+    if (N == 0) {
+        return 0;
+    } else if (N == 1) {
+        return 1;
+    } else {
+        var fib_arr = std.ArrayList(usize).init(ally);
+        defer fib_arr.deinit();
+        try fib_arr.append(0);
+        try fib_arr.append(1);
+        for (2..N + 1) |idx| {
+            const value: usize = fib_arr.items[idx - 1] + fib_arr.items[idx - 2];
+            if (idx == N) {
+                return value;
+            }
+            try fib_arr.append(value);
+        }
+        return 0;
+    }
+}
